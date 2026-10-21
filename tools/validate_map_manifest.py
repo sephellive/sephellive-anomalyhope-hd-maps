@@ -25,9 +25,13 @@ def main() -> int:
     if len(maps) != 43:
         errors.append(f"expected 43 DDS records, found {len(maps)}")
     files: set[str] = set()
+    technical_ids: set[str] = set()
     unmatched: set[str] = set()
     for entry in maps:
         name = entry.get("technical_id", "<unnamed>")
+        if name in technical_ids:
+            errors.append(f"duplicate technical_id: {name}")
+        technical_ids.add(name)
         source = entry.get("source_file")
         if not source or source in files:
             errors.append(f"{name}: missing or duplicate source_file {source}")

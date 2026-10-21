@@ -108,7 +108,9 @@ def main() -> None:
             destination_dir.mkdir(parents=True, exist_ok=True)
             png_source = temp_root / f"{len(report['assets']):03d}_{source.stem}.png"
             output_size = resize_premultiplied(source, png_source, args.factor)
-            expected_format = "DXT1" if entry["technical_id"] == "global_map" else "DXT3"
+            expected_format = entry["texture"]["format"]
+            if expected_format not in {"DXT1", "DXT3"}:
+                raise SystemExit(f"Unsupported source format for {entry['technical_id']}: {expected_format}")
             command = [
                 texconv,
                 "-f", expected_format,

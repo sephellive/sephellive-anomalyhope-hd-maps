@@ -1,33 +1,44 @@
 # AnomalyHope HD Maps
 
-A reproducible 2× upscale pipeline for the complete Anomaly 1.5.3 PDA map texture set. The pipeline preserves source geometry and DDS compression family. It generates installable outputs locally from a user's game installation; source Anomaly textures are not redistributed by this repository.
+A conservative 2× restoration of every PDA map texture shipped with S.T.A.L.K.E.R. Anomaly 1.5.3: 42 local maps and the global Zone map. The pipeline preserves image bounds, aspect ratio, map coordinates, source compression family, and the original one-mip UI layout.
+
+## Why the release is a local builder
+
+The maps are Anomaly game assets. This repository and its GitHub releases contain the reproducible builder, inventory, and validators. They do not redistribute original or derived maps. The builder reads them from your installed copy and creates an independent MO2-ready add-on.
 
 ## Requirements
 
-- S.T.A.L.K.E.R. Anomaly 1.5.3 installed locally
+- S.T.A.L.K.E.R. Anomaly 1.5.3
 - Python 3.11+ and Pillow
-- DirectXTex `texconv.exe`
-- Git LFS for any generated binary assets retained locally
+- DirectXTex `texconv.exe` available in `PATH`, or passed explicitly
 
-## Build locally
+## Build the MO2 add-on
 
-Extract the needed configuration and map DDS resources from your installation:
+From a release or repository checkout:
 
 ```powershell
-./tools/extract_anomaly_resources.ps1 -GamePath 'D:\Hope\Anomaly' -OutputPath "$env:TEMP\AnomalyHope-maps"
-python ./tools/build_map_manifest.py --maps-root "$env:TEMP\AnomalyHope-maps\textures\map" --global-map "$env:TEMP\AnomalyHope-maps\textures\ui\ui_global_map.dds" --maps-ltx "$env:TEMP\AnomalyHope-maps\metadata\configs\game_maps_single.ltx" --output ./assets/manifest/maps.json
-python ./tools/upscale_maps.py --extracted-root "$env:TEMP\AnomalyHope-maps" --manifest ./assets/manifest/maps.json --output-root 'D:\AnomalyHope-HD-Maps-build' --texconv 'C:\Tools\texconv.exe'
-python ./tools/validate_map_build.py --manifest ./assets/manifest/maps.json --output-root 'D:\AnomalyHope-HD-Maps-build'
+python -m pip install -r requirements.txt
+./tools/build_local.ps1 `
+  -GamePath 'D:\Hope\Anomaly' `
+  -OutputPath 'D:\Hope\mo2\mods\AnomalyHope HD Maps' `
+  -ArchivePath 'D:\Hope\AnomalyHope-HD-Maps-v0.1.0.zip'
 ```
 
-The output root contains an MO2-ready `gamedata/` tree and a JSON build report. The tools do not write into the game installation. Review `docs/research.md` for source mapping, upscaler comparisons, size/memory estimates, and current testing limits.
+If `texconv.exe` is not in `PATH`, add `-TexconvPath 'C:\path\to\texconv.exe'`. The builder never writes into the game installation. Enable the output directory as a separate MO2 mod.
 
-CI validates the checked-in manifest and Python tool syntax without needing proprietary game archives. Local build validation checks all generated DDS files and their hashes with `tools/validate_map_build.py`.
+## Processing and verification
 
-## Status and distribution
+Local maps retain DXT3 and the global map retains DXT1. Premultiplied-alpha bicubic scaling avoids dark edge fringes and does not invent roads, buildings, paths, or geographic features. The result contains 43 DDS overrides and uses about 180 MiB of compressed mip-0 GPU storage.
 
-The full 1.5.3 map inventory and a local 2× build have been produced and structurally validated. In-game PDA zoom, performance, and map rendering have not yet been verified. No public release is available. A release must not contain original game map textures without redistribution rights; use the local build workflow instead.
+The validators check inventory coverage, unique paths and IDs, exact 2× dimensions, aspect ratio, DDS format, mip count, hashes, and unchanged LTX bounds:
+
+```powershell
+python ./tools/validate_map_manifest.py
+python ./tools/validate_map_build.py --output-root 'D:\Hope\mo2\mods\AnomalyHope HD Maps'
+```
+
+`map_aes_1.dds` is preserved because it exists in the base texture archive, although no direct key for it was found in `game_maps_single.ltx`. See [`docs/research.md`](docs/research.md) for details and current test limits.
 
 ## License
 
-The repository license covers only original project code and documentation, not Anomaly game assets.
+The repository license covers original project code and documentation only. It does not grant rights to S.T.A.L.K.E.R. Anomaly assets. Locally generated DDS files must not be redistributed without permission from the relevant rights holders.
