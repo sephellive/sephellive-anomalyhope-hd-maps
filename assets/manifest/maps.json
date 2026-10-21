@@ -9,6 +9,11 @@
   "configured_location_count": 34,
   "local_map_texture_count": 42,
   "global_map_count": 1,
+  "local_texture_directory_inventory_complete": true,
+  "runtime_location_bindings_confirmed": false,
+  "unmatched_assets": [
+    "map_aes_1"
+  ],
   "notes": [
     "Game DDS assets were read locally; this manifest contains metadata and paths only.",
     "Unmatched textures are retained for manual review rather than omitted.",

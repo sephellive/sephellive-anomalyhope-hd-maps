@@ -15,7 +15,7 @@ Extract the needed configuration and map DDS resources from your installation:
 
 ```powershell
 ./tools/extract_anomaly_resources.ps1 -GamePath 'D:\Hope\Anomaly' -OutputPath "$env:TEMP\AnomalyHope-maps"
-python ./tools/build_map_manifest.py --maps-root "$env:TEMP\AnomalyHope-maps\textures\map" --global-map "$env:TEMP\AnomalyHope-maps\textures\ui\ui_global_map.dds" --maps-ltx "$env:TEMP\AnomalyHope-maps\configs\configs\game_maps_single.ltx" --output ./assets/manifest/maps.json
+python ./tools/build_map_manifest.py --maps-root "$env:TEMP\AnomalyHope-maps\textures\map" --global-map "$env:TEMP\AnomalyHope-maps\textures\ui\ui_global_map.dds" --maps-ltx "$env:TEMP\AnomalyHope-maps\metadata\configs\game_maps_single.ltx" --output ./assets/manifest/maps.json
 python ./tools/upscale_maps.py --extracted-root "$env:TEMP\AnomalyHope-maps" --manifest ./assets/manifest/maps.json --output-root 'D:\AnomalyHope-HD-Maps-build' --texconv 'C:\Tools\texconv.exe'
 python ./tools/validate_map_build.py --manifest ./assets/manifest/maps.json --output-root 'D:\AnomalyHope-HD-Maps-build'
 ```
