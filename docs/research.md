@@ -1,29 +1,33 @@
 # HD map research
 
-**Status: preliminary.** This note defines the verified preparation work and constraints. The Anomaly 1.5.3 game archives and extracted map textures were not available during this pass, so the map inventory, original dimensions/formats, processing results, and geometric validation are still outstanding.
+## Scope and source
 
-## Confirmed packaging and asset constraints
+Inventory source is the local `D:\Hope\Anomaly` installation. Its `changes152to153.txt` identifies it as Anomaly 1.5.3. `tools/extract_anomaly_resources.ps1` uses the game's own archive converter to read `configs.db0`, the UI global map, and texture archive thumbnail metadata. It extracts only the DDS files under `textures/map/` plus `textures/ui/ui_global_map.dds`; originals remain in a temporary working folder and are not committed.
 
-- Anomaly addons use loose resources under `gamedata/`; texture resources are DDS files and the loose tree mirrors paths inside packed game archives. See the [Anomaly Modding Book folder guide](https://github.com/TheParaziT/anomaly-modding-book/blob/main/docs/getting-started/main-folders-and-files.md).
-- The provided addon template is configured to track `.dds` in Git LFS and creates release ZIPs containing only `gamedata/`. Its README warns not to grant rights to game assets or other material the publisher does not own. See [the template repository](https://github.com/sephellive/sephellive-anomaly-addon-template).
-- The user's specification requires preserving map geometry and avoiding public redistribution of game textures without rights. This project will therefore use a local patch-generation workflow if the original map resources cannot be redistributed.
+## Findings
 
-## Processing constraints
+- `configs/game_maps_single.ltx` lists **34 configured location keys** and the global map. It defines global-map bounds in game coordinates; these values are recorded as metadata and are not altered.
+- The texture archives contain **42 DDS files under `textures/map/`**, plus `textures/ui/ui_global_map.dds`. The 42 local textures account for 46,142,720 compressed source bytes.
+- All 42 local map images use DXT3, have one base mip level, and range from 256×512 to 2048×2048. The global map is 1024×2048, DXT1, with one base mip level.
+- Forty-one local textures match a configured location by normalized filename or the explicit Agroprom Underground alias. `map_aes_1.dds` remains included in the inventory but has no matching key in `level_maps_single`; its runtime use is unresolved.
+- Some location keys have multiple map texture candidates (for example old and level-prefixed names). The manifest preserves all candidates and their configured `global_rect`; filename correspondence is recorded as a candidate and is not treated as proof of runtime binding.
+- The level-map names and texture layout follow the X-Ray convention documented in the [X-Ray SDK map configuration reference](https://sdk.stalker-game.com/en/index.php?title=AI_Map_Compiling). Loose `gamedata` textures override archive assets as described by the [Anomaly Modding Book](https://github.com/TheParaziT/anomaly-modding-book/blob/main/docs/getting-started/main-folders-and-files.md).
 
-1. Inventory all location and global-map resources from the exact 1.5.3 installation, including underground maps; record source path, dimensions, DDS format, mip levels, byte size, and configuration references.
-2. Compare candidate processing methods on one urban, one natural, and one underground map before choosing a pipeline. Upscaling is not evidence of recovered source detail; preserve the source content and avoid generated geometry.
-3. Keep identical aspect ratio and map boundaries. Validate exact alignment with a 2x nearest-neighbor reference grid and difference/edge maps; any resampling must be documented and tested against marker placement.
-4. Do not publish extracted original maps unless the asset license permits it. Prefer scripts that read user-supplied local sources and emit a MO2-ready patch archive.
-5. Measure final DDS dimensions, format, mipmaps, compressed size, and GPU-memory implications before deciding whether 2x or 4x is appropriate.
+## Inventory and constraints
 
-## Required next research pass
+`assets/manifest/maps.json` records all 42 local DDS assets and the global map, source archive/path, dimensions, format, mip levels, compressed size, candidate location association, and global rectangle. `tools/build_map_manifest.py` builds it from the local extraction.
 
-- Obtain the user's local Anomaly 1.5.3 installation or extracted original resources.
-- Enumerate every map image and all config references; generate a machine-readable map manifest with source dimensions and format.
-- Identify representative test maps and compare at least two conservative processing methods plus the unmodified baseline.
-- Establish the distributable-output policy based on game-asset rights before producing public binaries.
+No upscale has been run yet. Exact alignment can be preserved by keeping the same image bounds and using deterministic resampling, then checking a pixel-aligned difference against a nearest-neighbor 2x reference. Source maps are game assets; absent redistribution permission, the repository should contain the extraction/upscale/build tooling and users should generate their own MO2 patch from their local installation.
 
-## Sources consulted
+## Next steps
 
-- [Anomaly Modding Book: main folders and files](https://github.com/TheParaziT/anomaly-modding-book/blob/main/docs/getting-started/main-folders-and-files.md)
+1. Resolve `map_aes_1` usage and choose between duplicate candidate textures for each location using in-game rendering or stronger engine evidence.
+2. Compare conservative upscaling methods on one urban, one natural, and one underground map. Reject methods that add or move geometry.
+3. Build local outputs at 2x first; check dimensions, DDS format, exact aspect ratio, landmarks, archive size, and memory cost before choosing a final format.
+4. Test the generated patch in Anomaly 1.5.3 with MO2, including local and global map display and marker alignment.
+
+## References
+
 - [Anomaly addon template](https://github.com/sephellive/sephellive-anomaly-addon-template)
+- [X-Ray SDK map configuration reference](https://sdk.stalker-game.com/en/index.php?title=AI_Map_Compiling)
+- [Anomaly Modding Book: game folders and resources](https://github.com/TheParaziT/anomaly-modding-book/blob/main/docs/getting-started/main-folders-and-files.md)

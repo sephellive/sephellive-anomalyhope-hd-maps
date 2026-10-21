@@ -1,0 +1,996 @@
+{
+  "schema_version": 1,
+  "game": "S.T.A.L.K.E.R. Anomaly 1.5.3",
+  "inventory_basis": [
+    "configs/game_maps_single.ltx:[level_maps_single]",
+    "textures/map/*.dds",
+    "textures/ui/ui_global_map.dds"
+  ],
+  "configured_location_count": 34,
+  "local_map_texture_count": 42,
+  "global_map_count": 1,
+  "notes": [
+    "Game DDS assets were read locally; this manifest contains metadata and paths only.",
+    "Unmatched textures are retained for manual review rather than omitted.",
+    "Name matching is a candidate association, not proof of runtime binding."
+  ],
+  "maps": [
+    {
+      "technical_id": "map_aes_1",
+      "source_file": "textures/map/map_aes_1.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [],
+      "mapping_status": "unmatched_requires_review",
+      "global_rect_from_ltx": null,
+      "texture": {
+        "width": 1024,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_agroprom",
+      "source_file": "textures/map/map_agroprom.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l03_agroprom"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l03_agroprom": "164.0, 1848.0, 332.0, 2016.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_agroprom_underground#0",
+      "source_file": "textures/map/map_agroprom_underground#0.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l03u_agr_underground"
+      ],
+      "mapping_status": "known_name_alias",
+      "global_rect_from_ltx": {
+        "l03u_agr_underground": "245.0, 1960.0, 246.0, 1961.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_agroprom_underground",
+      "source_file": "textures/map/map_agroprom_underground.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l03u_agr_underground"
+      ],
+      "mapping_status": "known_name_alias",
+      "global_rect_from_ltx": {
+        "l03u_agr_underground": "245.0, 1960.0, 246.0, 1961.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_bar",
+      "source_file": "textures/map/map_bar.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l05_bar"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l05_bar": "407.0,1414.0,556.0,1712"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_darkvalley",
+      "source_file": "textures/map/map_darkvalley.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l04_darkvalley"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l04_darkvalley": "728.0, 1705.0, 852.0, 1953.000000"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_escape",
+      "source_file": "textures/map/map_escape.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l01_escape"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l01_escape": "358.0, 2022.0, 564.0, 2434.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 2048,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 2097280
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_fake_start",
+      "source_file": "textures/map/map_fake_start.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "fake_start"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "fake_start": "10,20,10,20"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_garbage",
+      "source_file": "textures/map/map_garbage.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l02_garbage"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l02_garbage": "369.0, 1776.0, 573.0, 1980.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_hospital",
+      "source_file": "textures/map/map_hospital.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l11_hospital"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l11_hospital": "194.0, 694.0, 246.0, 798.000000"
+      },
+      "texture": {
+        "width": 256,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 131200
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_jupiter",
+      "source_file": "textures/map/map_jupiter.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "jupiter"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "jupiter": "277.0, 783.0, 459.0, 965.0"
+      },
+      "texture": {
+        "width": 2048,
+        "height": 2048,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 4194432
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_jupiter_underground",
+      "source_file": "textures/map/map_jupiter_underground.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "jupiter_underground"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "jupiter_underground": "425.0, 886.0, 426.0, 887.0"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_k01_darkscape",
+      "source_file": "textures/map/map_k01_darkscape.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "k01_darkscape"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "k01_darkscape": "701.0, 2071.0, 1020.0, 2392.344727"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l03u_agr_underground#0",
+      "source_file": "textures/map/map_l03u_agr_underground#0.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l03u_agr_underground"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l03u_agr_underground": "245.0, 1960.0, 246.0, 1961.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l03u_agr_underground",
+      "source_file": "textures/map/map_l03u_agr_underground.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l03u_agr_underground"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l03u_agr_underground": "245.0, 1960.0, 246.0, 1961.0"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l04_darkvalley",
+      "source_file": "textures/map/map_l04_darkvalley.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l04_darkvalley"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l04_darkvalley": "728.0, 1705.0, 852.0, 1953.000000"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l04u_labx18",
+      "source_file": "textures/map/map_l04u_labx18.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l04u_labx18"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l04u_labx18": "824.0,1840.0,825.0,1841.0"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l05_bar",
+      "source_file": "textures/map/map_l05_bar.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l05_bar"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l05_bar": "407.0,1414.0,556.0,1712"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l06_rostok",
+      "source_file": "textures/map/map_l06_rostok.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l06_rostok"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l06_rostok": "258.0,1414.0,407.0,1712"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l07_military",
+      "source_file": "textures/map/map_l07_military.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l07_military"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l07_military": "425.0, 1231.0, 590, 1396.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l08_yantar",
+      "source_file": "textures/map/map_l08_yantar.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l08_yantar"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l08_yantar": "101.0, 1572.0, 249.0, 1720.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l08u_brainlab",
+      "source_file": "textures/map/map_l08u_brainlab.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l08u_brainlab"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l08u_brainlab": "172.0,1612.0,174.0,1614.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 256,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 131200
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l09_deadcity",
+      "source_file": "textures/map/map_l09_deadcity.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l09_deadcity"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l09_deadcity": "-6,1220.0, 248.0,1481.0"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l10_radar",
+      "source_file": "textures/map/map_l10_radar.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l10_radar"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l10_radar": "527.0,975.0,769.0,1218.704712"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l11_pripyat",
+      "source_file": "textures/map/map_l11_pripyat.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l11_pripyat",
+        "pripyat"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l11_pripyat": "607.0,762.0,740.0,909.0",
+        "pripyat": "679.0,718.0,888.0,927.0"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l12_stancia",
+      "source_file": "textures/map/map_l12_stancia.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l12_stancia"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l12_stancia": "322,298,728,495"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_l13_generators",
+      "source_file": "textures/map/map_l13_generators.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l13_generators"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l13_generators": "195,-40,414,179"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_labx8#0",
+      "source_file": "textures/map/map_labx8#0.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "labx8"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "labx8": "761.0, 841.0, 761.0, 841.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 262272
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_labx8#1",
+      "source_file": "textures/map/map_labx8#1.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "labx8"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "labx8": "761.0, 841.0, 761.0, 841.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 262272
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_labx8#2",
+      "source_file": "textures/map/map_labx8#2.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "labx8"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "labx8": "761.0, 841.0, 761.0, 841.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 262272
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_labx8#3",
+      "source_file": "textures/map/map_labx8#3.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "labx8"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "labx8": "761.0, 841.0, 761.0, 841.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 262272
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_labx8",
+      "source_file": "textures/map/map_labx8.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "labx8"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "labx8": "761.0, 841.0, 761.0, 841.0"
+      },
+      "texture": {
+        "width": 512,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 262272
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_limansk",
+      "source_file": "textures/map/map_limansk.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l10_limansk"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l10_limansk": "66.0, 874.0, 182.0, 1105.000000"
+      },
+      "texture": {
+        "width": 512,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_marsh",
+      "source_file": "textures/map/map_marsh.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "k00_marsh"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "k00_marsh": "22.0, 2113.0, 352.0, 2443.000000"
+      },
+      "texture": {
+        "width": 2048,
+        "height": 2048,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 4194432
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_military",
+      "source_file": "textures/map/map_military.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l07_military"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l07_military": "425.0, 1231.0, 590, 1396.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_pripyat",
+      "source_file": "textures/map/map_pripyat.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l11_pripyat",
+        "pripyat"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l11_pripyat": "607.0,762.0,740.0,909.0",
+        "pripyat": "679.0,718.0,888.0,927.0"
+      },
+      "texture": {
+        "width": 2048,
+        "height": 2048,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 4194432
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_radar",
+      "source_file": "textures/map/map_radar.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l10_radar"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l10_radar": "527.0,975.0,769.0,1218.704712"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_red_forest",
+      "source_file": "textures/map/map_red_forest.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l10_red_forest"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l10_red_forest": "198.0, 1028.0, 380.0, 1210.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_stancia_2",
+      "source_file": "textures/map/map_stancia_2.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l12_stancia_2"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l12_stancia_2": "322,101,728,298"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 512,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 524416
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_y04_pole",
+      "source_file": "textures/map/map_y04_pole.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "y04_pole"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "y04_pole": "457,1965,698.98,2205"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_yantar",
+      "source_file": "textures/map/map_yantar.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "l08_yantar"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "l08_yantar": "101.0, 1572.0, 249.0, 1720.000000"
+      },
+      "texture": {
+        "width": 1024,
+        "height": 1024,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "map_zaton",
+      "source_file": "textures/map/map_zaton.dds",
+      "source_archive": "db/textures/textures.db2",
+      "locations_by_name_match": [
+        "zaton"
+      ],
+      "mapping_status": "name_match",
+      "global_rect_from_ltx": {
+        "zaton": "291.0, 574.0, 473.0, 756.0"
+      },
+      "texture": {
+        "width": 2048,
+        "height": 2048,
+        "format": "DXT3",
+        "mip_levels": 1,
+        "bytes": 4194432
+      },
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    },
+    {
+      "technical_id": "global_map",
+      "source_file": "textures/ui/ui_global_map.dds",
+      "source_archive": "db/textures/textures_ui.db0",
+      "locations_by_name_match": [
+        "jupiter",
+        "k00_marsh",
+        "k01_darkscape",
+        "k02_trucks_cemetery",
+        "l01_escape",
+        "l02_garbage",
+        "l03_agroprom",
+        "l04_darkvalley",
+        "l05_bar",
+        "l06_rostok",
+        "l07_military",
+        "l08_yantar",
+        "l09_deadcity",
+        "l10_limansk",
+        "l10_radar",
+        "l10_red_forest",
+        "l11_hospital",
+        "l11_pripyat",
+        "l12_stancia",
+        "l12_stancia_2",
+        "l13_generators",
+        "pripyat",
+        "zaton",
+        "jupiter_underground",
+        "labx8",
+        "l03u_agr_underground",
+        "l04u_labx18",
+        "l08u_brainlab",
+        "l10u_bunker",
+        "l12u_control_monolith",
+        "l12u_sarcofag",
+        "l13u_warlab",
+        "fake_start",
+        "y04_pole"
+      ],
+      "mapping_status": "global_map",
+      "texture": {
+        "width": 1024,
+        "height": 2048,
+        "format": "DXT1",
+        "mip_levels": 1,
+        "bytes": 1048704
+      },
+      "global_bounds_from_ltx": null,
+      "output_file": null,
+      "processing_status": "not_started",
+      "geometry_verification": "pending"
+    }
+  ]
+}

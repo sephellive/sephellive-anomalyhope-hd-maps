@@ -1,64 +1,31 @@
-# &lt;Addon Name&gt;
+# AnomalyHope HD Maps
 
-Short description of the addon.
-
-This repository is a template for small, independent S.T.A.L.K.E.R. Anomaly addons. Replace the placeholders, add the addon files under `gamedata`, and develop the mod without a separate build system.
+A reproducible 2× upscale pipeline for the complete Anomaly 1.5.3 PDA map texture set. The pipeline preserves source geometry and DDS compression family. It generates installable outputs locally from a user's game installation; source Anomaly textures are not redistributed by this repository.
 
 ## Requirements
 
-- S.T.A.L.K.E.R. Anomaly 1.5.3
-- [Anomaly Modded Exes](https://github.com/themrdemonized/xray-monolith) when the addon uses DLTX or another engine extension
-- Git LFS when the addon contains binary assets tracked by `.gitattributes`
+- S.T.A.L.K.E.R. Anomaly 1.5.3 installed locally
+- Python 3.11+ and Pillow
+- DirectXTex `texconv.exe`
+- Git LFS for any generated binary assets retained locally
 
-## Installation
+## Build locally
 
-Download the ZIP from the latest GitHub Release and extract it directly into the S.T.A.L.K.E.R. Anomaly directory. The archive starts with `gamedata/`; it has no extra wrapper directory.
-
-For a local checkout, run:
-
-```powershell
-./tools/install.ps1 -GamePath "D:\Stalker\Anomaly-Test"
-```
-
-The installer copies and updates this addon's files. It does not delete the game's existing `gamedata` or files belonging to other addons.
-
-To download and install the latest GitHub Release instead of the local files:
+Extract the needed configuration and map DDS resources from your installation:
 
 ```powershell
-./tools/install.ps1 -GamePath "D:\Stalker\Anomaly-Test" -Latest
+./tools/extract_anomaly_resources.ps1 -GamePath 'D:\Hope\Anomaly' -OutputPath "$env:TEMP\AnomalyHope-maps"
+python ./tools/build_map_manifest.py --maps-root "$env:TEMP\AnomalyHope-maps\textures\map" --global-map "$env:TEMP\AnomalyHope-maps\textures\ui\ui_global_map.dds" --maps-ltx "$env:TEMP\AnomalyHope-maps\configs\configs\game_maps_single.ltx" --output ./assets/manifest/maps.json
+python ./tools/upscale_maps.py --extracted-root "$env:TEMP\AnomalyHope-maps" --manifest ./assets/manifest/maps.json --output-root 'D:\AnomalyHope-HD-Maps-build' --texconv 'C:\Tools\texconv.exe'
+python ./tools/validate_map_build.py --manifest ./assets/manifest/maps.json --output-root 'D:\AnomalyHope-HD-Maps-build'
 ```
 
-`-Latest` derives the repository from the `origin` remote. Public releases need no token. For a private repository, set `GH_TOKEN` or `GITHUB_TOKEN` to a token that can read the repository. Local installation never uses the GitHub API.
+The output root contains an MO2-ready `gamedata/` tree and a JSON build report. The tools do not write into the game installation. Review `docs/research.md` for source mapping, upscaler comparisons, size/memory estimates, and current testing limits.
 
-## Development
+## Status and distribution
 
-Create a repository from this template, then clone it:
-
-```powershell
-git clone https://github.com/<owner>/<repository>.git
-cd <repository>
-git lfs install
-```
-
-Put only the files shipped by the addon under `gamedata/`. Add standard Anomaly directories such as `textures`, `meshes`, `sounds`, or `shaders` only when the addon needs them. The tracked `.gitkeep` files only preserve the starter directories and are excluded from release ZIPs.
-
-For DLTX, the filename must identify the original root LTX file: `mod_<base-file-name>_sep_<module>.ltx`. For example, a patch to `system.ltx` can be named `mod_system_sep_economy.ltx`. Place it beside the root file it patches. Do not use DLTX syntax unless the addon declares Modded Exes as a requirement.
-
-## Branching
-
-- `master` is stable and releasable.
-- `feature/*` is for development and testing.
-
-## Releases
-
-Every push or merge to `master` runs GitHub Actions. The workflow packages `gamedata/`, creates version `v0.0.<run number>`, creates the matching Git tag and GitHub Release with generated notes, and uploads `<repository>-<version>.zip`.
-
-Rerunning the same workflow keeps the same version and replaces the release asset instead of creating a conflicting tag.
-
-## Git LFS
-
-The template tracks common binary game assets (`.dds`, `.ogf`, `.object`, `.ogg`, `.wav`, `.tga`, and `.png`) with Git LFS. Install Git LFS before adding those files and ensure CI has access to the LFS objects. Text files such as LTX, Lua scripts, Markdown, YAML, and PowerShell remain in normal Git history.
+The full 1.5.3 map inventory and a local 2× build have been produced and structurally validated. In-game PDA zoom, performance, and map rendering have not yet been verified. No public release is available. A release must not contain original game map textures without redistribution rights; use the local build workflow instead.
 
 ## License
 
-No license is selected by this template. Replace `LICENSE` with the license appropriate for your original work before publishing. Do not grant rights to game assets or third-party material you do not own.
+The repository license covers only original project code and documentation, not Anomaly game assets.
