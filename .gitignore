@@ -10,6 +10,8 @@
 *.temp
 *.bak
 *.swp
+__pycache__/
+*.py[cod]
 *~
 /tmp/
 /temp/
