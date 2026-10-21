@@ -22,6 +22,8 @@ python ./tools/validate_map_build.py --manifest ./assets/manifest/maps.json --ou
 
 The output root contains an MO2-ready `gamedata/` tree and a JSON build report. The tools do not write into the game installation. Review `docs/research.md` for source mapping, upscaler comparisons, size/memory estimates, and current testing limits.
 
+CI validates the checked-in manifest and Python tool syntax without needing proprietary game archives. Local build validation checks all generated DDS files and their hashes with `tools/validate_map_build.py`.
+
 ## Status and distribution
 
 The full 1.5.3 map inventory and a local 2× build have been produced and structurally validated. In-game PDA zoom, performance, and map rendering have not yet been verified. No public release is available. A release must not contain original game map textures without redistribution rights; use the local build workflow instead.
