@@ -10,10 +10,11 @@ import shutil
 import struct
 import subprocess
 import tempfile
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageFilter
 
 
 def read_dds_header(path: Path) -> dict[str, object]:
@@ -46,13 +47,33 @@ def compressed_mip0_bytes(info: dict[str, object]) -> int:
     return ((int(info["width"]) + 3) // 4) * ((int(info["height"]) + 3) // 4) * block_bytes
 
 
-def resize_premultiplied(source: Path, destination: Path, factor: int) -> tuple[int, int]:
+def enhance_and_resize(source: Path, destination: Path, factor: int) -> tuple[int, int]:
     with Image.open(source) as opened:
         image = opened.convert("RGBA")
     target_size = (image.width * factor, image.height * factor)
-    # Premultiplied-alpha filtering avoids dark/bright fringes around transparent map edges.
-    scaled = image.convert("RGBa").resize(target_size, Image.Resampling.BICUBIC)
-    scaled.convert("RGBA").save(destination, format="PNG", optimize=False)
+
+    # Clean up the muddy low-frequency contrast before enlargement while retaining
+    # the exact cartographic geometry. Work in luma so roads and labels sharpen
+    # without creating colored halos.
+    rgb = image.convert("RGB")
+    rgb = ImageEnhance.Color(rgb).enhance(0.92)
+    y, cb, cr = rgb.convert("YCbCr").split()
+    y = ImageEnhance.Contrast(y).enhance(1.035)
+    graded = Image.merge("YCbCr", (y, cb, cr)).convert("RGB")
+
+    # Subtle warm-gray grading matches the PDA concept and reduces the old blue cast.
+    red, green, blue = graded.split()
+    red = red.point(lambda value: min(255, round(value * 1.01)))
+    blue = blue.point(lambda value: max(0, round(value * 0.985)))
+    graded = Image.merge("RGB", (red, green, blue))
+
+    prepared = Image.merge("RGBA", (*graded.split(), image.getchannel("A")))
+    # Premultiplied-alpha Lanczos prevents fringes around transparent map edges.
+    scaled = prepared.convert("RGBa").resize(target_size, Image.Resampling.LANCZOS).convert("RGBA")
+    alpha = scaled.getchannel("A")
+    detail = scaled.convert("RGB")
+    detail = detail.filter(ImageFilter.UnsharpMask(radius=0.62, percent=16, threshold=4))
+    Image.merge("RGBA", (*detail.split(), alpha)).save(destination, format="PNG", optimize=False)
     return target_size
 
 
@@ -87,7 +108,7 @@ def main() -> None:
     report = {
         "game": manifest["game"],
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "method": "2x bicubic with premultiplied alpha",
+        "method": "2x tactical-v3: restrained luma contrast, warm-gray grading, Lanczos, light detail recovery, full mip chain",
         "factor": args.factor,
         "coordinate_transform": "(x, y) -> (2*x, 2*y); no crop or aspect-ratio change",
         "assets": [],
@@ -107,14 +128,16 @@ def main() -> None:
             destination_dir = output_root / relative_output.parent
             destination_dir.mkdir(parents=True, exist_ok=True)
             png_source = temp_root / f"{len(report['assets']):03d}_{source.stem}.png"
-            output_size = resize_premultiplied(source, png_source, args.factor)
+            output_size = enhance_and_resize(source, png_source, args.factor)
             expected_format = entry["texture"]["format"]
             if expected_format not in {"DXT1", "DXT3"}:
                 raise SystemExit(f"Unsupported source format for {entry['technical_id']}: {expected_format}")
             command = [
                 texconv,
                 "-f", expected_format,
-                "-m", "1",
+                "-m", "0",
+                "-if", "CUBIC_DITHER",
+                "-sepalpha",
                 "-dx9",
                 "-y",
                 "-o", str(destination_dir),
@@ -134,6 +157,11 @@ def main() -> None:
             if output_info["format"] != expected_format:
                 raise RuntimeError(
                     f"Expected {expected_format}, got {output_info['format']}: {expected_dds}"
+                )
+            expected_mips = math.floor(math.log2(max(output_size))) + 1
+            if output_info["mip_levels"] != expected_mips:
+                raise RuntimeError(
+                    f"Expected {expected_mips} mip levels, got {output_info['mip_levels']}: {expected_dds}"
                 )
 
             report["assets"].append({

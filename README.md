@@ -1,6 +1,6 @@
 # AnomalyHope HD Maps
 
-A conservative 2× restoration of every PDA map texture shipped with S.T.A.L.K.E.R. Anomaly 1.5.3: 42 local maps and the global Zone map. The pipeline preserves image bounds, aspect ratio, map coordinates, source compression family, and the original one-mip UI layout.
+A balanced 2× treatment of every PDA map texture shipped with S.T.A.L.K.E.R. Anomaly 1.5.3: 42 local maps and the global Zone map. The `tactical-v3` pipeline improves road, building and terrain separation while preserving image bounds, aspect ratio, coordinates and original geography.
 
 ## Why the release is a local builder
 
@@ -21,14 +21,14 @@ python -m pip install -r requirements.txt
 ./tools/build_local.ps1 `
   -GamePath 'D:\Hope\Anomaly' `
   -OutputPath 'D:\Hope\mo2\mods\AnomalyHope HD Maps' `
-  -ArchivePath 'D:\Hope\AnomalyHope-HD-Maps-v0.1.0.zip'
+  -ArchivePath 'D:\Hope\AnomalyHope-HD-Maps-v0.2.0.zip'
 ```
 
 If `texconv.exe` is not in `PATH`, add `-TexconvPath 'C:\path\to\texconv.exe'`. The builder never writes into the game installation. Enable the output directory as a separate MO2 mod.
 
 ## Processing and verification
 
-Local maps retain DXT3 and the global map retains DXT1. Premultiplied-alpha bicubic scaling avoids dark edge fringes and does not invent roads, buildings, paths, or geographic features. The result contains 43 DDS overrides and uses about 180 MiB of compressed mip-0 GPU storage.
+Local maps retain DXT3 and the global map retains DXT1. Processing uses restrained luminance contrast, subtle warm-gray grading, premultiplied-alpha Lanczos enlargement and one light detail-recovery pass. Every DDS now includes a full cubic-filtered mip chain so zoomed-out maps remain stable instead of becoming harsh and aliased. The pipeline does not synthesize or move roads, buildings, paths or geographic features. The result contains 43 DDS overrides and uses about 180 MiB at mip 0, plus lower-resolution mip levels.
 
 The validators check inventory coverage, unique paths and IDs, exact 2× dimensions, aspect ratio, DDS format, mip count, hashes, and unchanged LTX bounds:
 

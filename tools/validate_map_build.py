@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import struct
 from pathlib import Path
 
@@ -64,14 +65,17 @@ def main() -> None:
             raise SystemExit(f"Aspect ratio changed for {technical_id}")
         if fourcc != source["format"]:
             raise SystemExit(f"DDS format changed for {technical_id}: {fourcc}")
-        if mips != 1:
-            raise SystemExit(f"Unexpected mip chain for {technical_id}: {mips}")
+        expected_mips = math.floor(math.log2(max(width, height))) + 1
+        if mips != expected_mips:
+            raise SystemExit(
+                f"Unexpected mip chain for {technical_id}: {mips}; expected {expected_mips}"
+            )
         if sha256_file(output) != built["output"]["sha256"]:
             raise SystemExit(f"Output hash does not match report for {technical_id}")
         if built["global_rect_from_ltx"] != source_entry.get("global_rect_from_ltx"):
             raise SystemExit(f"Global map coordinates changed for {technical_id}")
 
-    print(f"PASS: {len(actual)} assets; dimensions 2x; aspect, DDS format, mip count, hash, and LTX bounds preserved.")
+    print(f"PASS: {len(actual)} assets; dimensions 2x; full mip chains; aspect, DDS format, hash, and LTX bounds preserved.")
     print(f"Compressed DDS total: {sum(a['output']['bytes'] for a in actual.values()):,} bytes")
     print(f"Mip 0 GPU memory estimate: {sum(a['output']['compressed_mip0_estimate_bytes'] for a in actual.values()):,} bytes")
 
